@@ -1,5 +1,17 @@
 # SystemInformationTool
 
+### How to use on mac:
+1. Download VMware Fusion: https://www.reddit.com/r/vmware/comments/1cpv4vj/how_to_download_vmware_fusion_for_mac/
+2. Download Ubuntu iso file
+3. Open VMware Fusion
+4. Configure VMware Fusion
+5. Drag iso file into drop box
+6. Inside VMware fusion, download vs code
+7. Clone this repository
+8. Navigate to the top level folder
+9. Enter Command: python3 script.py --cpu, --memory, --storage, --root, --filesystems, --processes, --cmdline, --versio, --uptime (all args are optional regarding what you want to output)
+10. Find system info outputted
+
 # Group Assignment 2
 
 In this assignment, you will build a "system information tool" by using only the various files and directories offered as part of Linux's "pseudo-filesystems".
@@ -61,3 +73,32 @@ The due date for this assignment is **Wednesday, October 9** at **11:59 PM**.
 This assignment only scratches the surface of the breadth of information available via simple interfaces such as the files in `/proc` and `/sys`. You can install the package `lshw` if you want to try a very comprehensive system information tool that extracts a large amount of information via these interfaces. 
 
 Also note that nearly every other tool that presents information about your system is using these interfaces to obtain that information. Commands such as `free`, `top`/`htop`, `uptime`, `uname` and so on are all simply accessing the data provided by these virtual files!
+
+# Using VS Code in Linux
+
+This document explains how to install [Visual Studio Code](https://code.visualstudio.com/) so that you can use it to edit your Bash scripts.
+
+## Windows (WSL)
+
+If you are using WSL and have VS Code installed on your Windows machine, you are already all set. Just type `code <filename>` in a Bash shell (replacing `<filename>` with the file you want to edit) and VS Code will open on your Windows machine. You can also pass a directory name to open the whole directory in VS Code.
+
+## Virtual Machine (VMware on Windows or Mac)
+
+1. Visit the [VS Code Download Page](https://code.visualstudio.com/download) in a browser on your Linux system.
+
+1. Download the `.deb` version of the installer from the middle column. 
+
+    * If you're on a Windows PC using VMware Workstation, or you're using VMware Fusion on an Intel Mac, download the **x64** version.
+    * If you're on an Apple Silicon Mac using VMware Fusion, download the **Arm64** version.
+
+1. In Bash, switch into your `Downloads` directory.
+
+1. Run this command:
+
+        sudo apt install ./code*.deb
+
+    This will install VS Code.
+
+1. Run VS Code. It should finish the configuration for you.
+
+You should now be able to use `code` at the command prompt to open scripts or directories in VS Code on Linux.
