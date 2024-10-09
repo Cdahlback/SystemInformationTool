@@ -9,7 +9,7 @@
 6. Inside VMware fusion, download vs code
 7. Clone this repository
 8. Navigate to the top level folder
-9. Enter Command: python3 script.py --cpu, --memory, --storage, --root, --filesystems, --processes, --cmdline, --versio, --uptime (all args are optional regarding what you want to output)
+9. Enter Command: python3 script.py --cpu --memory --storage --root --filesystems --processes --cmdline --version --uptime (all args are optional regarding what you want to output)
 10. Find system info outputted
 
 # Group Assignment 2
