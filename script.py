@@ -4,6 +4,7 @@ import os
 
 
 def get_cpu_name():
+    """Get the CPU name from /proc/cpuinfo"""
     with open('/proc/cpuinfo', 'r') as f:
         for line in f:
             if "model name" in line:
@@ -11,6 +12,7 @@ def get_cpu_name():
 
 
 def get_cpu_cores():
+    """Get the number of CPU cores from /proc/cpuinfo"""
     cores = 0
     with open('/proc/cpuinfo', 'r') as f:
         for line in f:
@@ -20,6 +22,7 @@ def get_cpu_cores():
 
 
 def get_total_ram_gb():
+    """Get the total RAM in GB from /proc/meminfo"""
     with open('/proc/meminfo', 'r') as f:
         for line in f:
             if "MemTotal" in line:
@@ -29,6 +32,7 @@ def get_total_ram_gb():
             
 
 def get_available_memory_gb():
+    """Get the available memory in GB from /proc/meminfo"""
     with open('/proc/meminfo', 'r') as f:
         for line in f:
             if "MemAvailable" in line:
@@ -38,6 +42,7 @@ def get_available_memory_gb():
 
 
 def get_storage_devices():
+    """Get a list of storage devices from /sys/block"""
     devices = []
     for device in os.listdir('/sys/block'):
         if not device.startswith(("loop", "ram")):
@@ -46,6 +51,7 @@ def get_storage_devices():
 
 
 def get_device_size_gb(device):
+    """Get the size of a storage device in GB from /sys/block"""
     size_path = f'/sys/block/{device}/size'
     with open(size_path, 'r') as f:
         sectors = int(f.read().strip())
@@ -54,6 +60,7 @@ def get_device_size_gb(device):
 
 
 def get_root_device():
+    """Get the root filesystem device from /proc/mounts"""
     with open('/proc/mounts', 'r') as f:
         for line in f:
             parts = line.split()
@@ -62,11 +69,13 @@ def get_root_device():
 
 
 def get_mounted_filesystems():
+    """Get the total number of mounted filesystems from /proc/mounts"""
     with open('/proc/mounts', 'r') as f:
         return len(f.readlines())
     
 
 def get_running_processes():
+    """Get the number of running processes from /proc"""
     process_count = 0
     for entry in os.listdir('/proc'):
         if entry.isdigit():
@@ -75,16 +84,19 @@ def get_running_processes():
 
 
 def get_kernel_cmdline():
+    """Get the kernel command line from /proc/cmdline"""
     with open('/proc/cmdline', 'r') as f:
         return f.read().strip()
 
 
 def get_kernel_version():
+    """Get the kernel version from /proc/version"""
     with open('/proc/version', 'r') as f:
         return f.read().split()[2]
 
 
 def get_system_uptime():
+    """Get the system uptime from /proc/uptime"""
     with open('/proc/uptime', 'r') as f:
         uptime_seconds = float(f.read().split()[0])
         hours = int(uptime_seconds // 3600)
@@ -94,6 +106,7 @@ def get_system_uptime():
 
 
 def main():
+    """Parse command-line arguments and display system information"""
     parser = argparse.ArgumentParser(description="System Information Tool")
     parser.add_argument('--cpu', action='store_true', help="Show CPU information")
     parser.add_argument('--memory', action='store_true', help="Show memory information")
